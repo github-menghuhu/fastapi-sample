@@ -10,12 +10,12 @@ from src.core.settings import (
     POSTGRESQL_USER,
     POSTGRESQL_PASSWORD,
     POSTGRESQL_HOST,
+    POSTGRESQL_PORT,
     POSTGRESQL_NAME,
     IS_PRINT_SQL
 )
 
-DATABASE_URL = f"postgresql+asyncpg://{POSTGRESQL_USER}:{POSTGRESQL_PASSWORD}@{POSTGRESQL_HOST}:5433/{POSTGRESQL_NAME}"
-# DATABASE_URL = f"postgresql+asyncpg://{POSTGRESQL_USER}:{POSTGRESQL_PASSWORD}@{POSTGRESQL_HOST}:5432/{POSTGRESQL_NAME}"
+DATABASE_URL = f"postgresql+asyncpg://{POSTGRESQL_USER}:{POSTGRESQL_PASSWORD}@{POSTGRESQL_HOST}:{POSTGRESQL_PORT}/{POSTGRESQL_NAME}"
 engine = create_async_engine(DATABASE_URL, echo=IS_PRINT_SQL, future=True)
 async_session_maker = async_sessionmaker(bind=engine, autocommit=False, autoflush=False)
 

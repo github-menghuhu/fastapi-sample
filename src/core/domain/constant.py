@@ -6,11 +6,11 @@ class ResponseCode:
     """
     自定义响应码
     """
-    request_success = 200
-    create_success = 201
-    update_success = 200
-    delete_success = 200
-    request_error = 400
+    request_success = 2000
+    create_success = 2001
+    update_success = 2002
+    delete_success = 2003
+    request_error = 4000
 
     pass
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from fastapi_pagination import Page
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from src.core.db.db_base import get_async_session
 from src.core.domain.custom_response import CommonResponse
 from src.core.domain.constant import ResponseCode, ResponseMessage
@@ -11,10 +11,9 @@ router = APIRouter()
 
 
 @router.post("/", response_model=CommonResponse[CreateUser])
-# @router.post("/", response_model=CreateUser)
 async def create_user(
         create_user_params: CreateUserParams,
-        db: Session = Depends(get_async_session)
+        db: AsyncSession = Depends(get_async_session)
 ):
     """
     接口层
@@ -33,7 +32,7 @@ async def create_user(
 
 @router.get("/", response_model=Page[ListUser])
 async def query_user_list(
-        db: Session = Depends(get_async_session)
+        db: AsyncSession = Depends(get_async_session)
 ):
     """
     接口层
